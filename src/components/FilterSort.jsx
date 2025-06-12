@@ -1,12 +1,12 @@
-import React from 'react';
-import { Filter, ArrowUpDown, Search } from 'lucide-react';
+import React from "react";
+import { Filter, ArrowUpDown, Search } from "lucide-react";
 
 const FilterSort = ({
   searchTerm,
   onSearchChange,
   sortBy,
   onSortChange,
-  totalArticles
+  totalArticles,
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg p-4 mb-6">
@@ -23,7 +23,7 @@ const FilterSort = ({
             <input
               type="text"
               value={searchTerm}
-              onChange={e => onSearchChange(e.target.value)}
+              onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Filter by keyword..."
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 w-full sm:w-64"
             />
@@ -34,7 +34,7 @@ const FilterSort = ({
             <ArrowUpDown className="h-4 w-4 text-gray-600" />
             <select
               value={sortBy}
-              onChange={e => onSortChange(e.target.value)}
+              onChange={(e) => onSortChange(e.target.value)}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             >
               <option value="relevance">Sort by Relevance</option>

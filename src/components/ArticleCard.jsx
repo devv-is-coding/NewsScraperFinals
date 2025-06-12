@@ -1,10 +1,10 @@
-import React from 'react';
-import { ExternalLink, User, Calendar, Globe } from 'lucide-react';
+import React from "react";
+import { ExternalLink, User, Calendar, Globe } from "lucide-react";
 
 const ArticleCard = ({ article }) => {
   const handleLinkClick = (e) => {
     e.preventDefault();
-    window.open(article.link, '_blank', 'noopener,noreferrer');
+    window.open(article.link, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -54,7 +54,9 @@ const ArticleCard = ({ article }) => {
 
       <div className="bg-gradient-to-r from-orange-50 to-blue-50 px-6 py-2">
         <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-500">Click to read full article</span>
+          <span className="text-xs text-gray-500">
+            Click to read full article
+          </span>
           <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
         </div>
       </div>

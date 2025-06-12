@@ -1,8 +1,8 @@
-import React from 'react';
-import ArticleCard from './ArticleCard';
-import { FileX } from 'lucide-react';
+import React from "react";
+import ArticleCard from "./ArticleCard";
+import { FileX } from "lucide-react";
 
-const ArticleGrid = ({ articles, isLoading }) => {
+const ArticleGrid = ({ articles, isLoading, searchTerm, hasArticles }) => {
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,9 +40,15 @@ const ArticleGrid = ({ articles, isLoading }) => {
         <div className="bg-gray-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
           <FileX className="h-12 w-12 text-gray-400" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">No Articles Found</h3>
+        <h3 className="text-xl font-semibold text-gray-700 mb-2">
+          {searchTerm && hasArticles
+            ? `No articles matched "${searchTerm}"`
+            : "No Articles Found"}
+        </h3>
         <p className="text-gray-500 max-w-md mx-auto">
-          Try entering a different news website URL or adjust your search filters.
+          {searchTerm && hasArticles
+            ? "Try refining your search or checking for typos."
+            : "Try entering a different news website URL or adjust your search filters."}
         </p>
       </div>
     );
@@ -51,11 +57,10 @@ const ArticleGrid = ({ articles, isLoading }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {articles.map((article) => (
-        <ArticleCard key={article.id} article={article} />
+        <ArticleCard key={article.id || article.link} article={article} />
       ))}
     </div>
   );
 };
 
 export default ArticleGrid;
-    

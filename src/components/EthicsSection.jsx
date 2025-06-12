@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { Shield, AlertTriangle, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Shield,
+  AlertTriangle,
+  BookOpen,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 
 const EthicsSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -13,7 +19,9 @@ const EthicsSection = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Shield className="h-6 w-6 text-orange-600" />
-            <h2 className="text-xl font-semibold text-gray-800">Ethical Scraping Guidelines</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Ethical Scraping Guidelines
+            </h2>
           </div>
           {isExpanded ? (
             <ChevronUp className="h-5 w-5 text-gray-600" />
@@ -34,7 +42,9 @@ const EthicsSection = () => {
             <div className="bg-white rounded-lg p-5 shadow-sm">
               <div className="flex items-center space-x-2 mb-3">
                 <BookOpen className="h-5 w-5 text-blue-600" />
-                <h3 className="font-semibold text-gray-800">Legal Considerations</h3>
+                <h3 className="font-semibold text-gray-800">
+                  Legal Considerations
+                </h3>
               </div>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>• Always check robots.txt files before scraping</li>
@@ -62,22 +72,36 @@ const EthicsSection = () => {
             <div className="flex items-start space-x-2">
               <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-yellow-800 mb-1">Important Notice</h4>
+                <h4 className="font-semibold text-yellow-800 mb-1">
+                  Important Notice
+                </h4>
                 <p className="text-sm text-yellow-700">
-                  This tool is for educational and research purposes. Always ensure you have permission
-                  to scrape content and comply with applicable laws and website policies. Consider using
-                  RSS feeds, APIs, or other official data sources when available.
+                  This tool is for educational and research purposes. Always
+                  ensure you have permission to scrape content and comply with
+                  applicable laws and website policies. Consider using RSS
+                  feeds, APIs, or other official data sources when available.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="bg-white rounded-lg p-5 shadow-sm">
-            <h3 className="font-semibold text-gray-800 mb-3">Recommended Alternatives</h3>
+            <h3 className="font-semibold text-gray-800 mb-3">
+              Recommended Alternatives
+            </h3>
             <div className="space-y-2 text-sm text-gray-600">
-              <p>• <strong>RSS Feeds:</strong> Most news sites provide RSS feeds for their content</p>
-              <p>• <strong>News APIs:</strong> Services like NewsAPI, Guardian API, or NYTimes API</p>
-              <p>• <strong>Data Partnerships:</strong> Contact websites directly for data access</p>
+              <p>
+                • <strong>RSS Feeds:</strong> Most news sites provide RSS feeds
+                for their content
+              </p>
+              <p>
+                • <strong>News APIs:</strong> Services like NewsAPI, Guardian
+                API, or NYTimes API
+              </p>
+              <p>
+                • <strong>Data Partnerships:</strong> Contact websites directly
+                for data access
+              </p>
             </div>
           </div>
         </div>

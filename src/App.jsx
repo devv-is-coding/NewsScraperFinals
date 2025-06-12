@@ -1,11 +1,12 @@
-import React from 'react';
-import Header from './components/Header';
-import UrlInput from './components/UserInput';
-import FilterSort from './components/FilterSort';
-import ArticleGrid from './components/ArticleGrid';
-import EthicsSection from './components/EthicsSection';
-import { UseScraper } from './hooks/UseScraper';
-import { AlertCircle, CheckCircle } from 'lucide-react';
+import React from "react";
+import Header from "./components/Header";
+import UrlInput from "./components/UserInput";
+import FilterSort from "./components/FilterSort";
+import ArticleGrid from "./components/ArticleGrid";
+import EthicsSection from "./components/EthicsSection";
+import Footer from "./components/Footer";
+import { UseScraper } from "./hooks/UseScraper";
+import { AlertCircle, CheckCircle } from "lucide-react";
 
 function App() {
   const {
@@ -17,7 +18,7 @@ function App() {
     sortBy,
     setSortBy,
     ScrapeArticles,
-    setError
+    setError,
   } = UseScraper();
 
   const handleScrape = async (url) => {
@@ -28,10 +29,14 @@ function App() {
     setError(null);
   };
 
+  const filteredArticles = articles.filter((article) =>
+    article.headline?.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Header />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Error Alert */}
         {error && (
@@ -42,8 +47,9 @@ function App() {
                 <h3 className="text-red-800 font-semibold">Scraping Error</h3>
                 <p className="text-red-700 text-sm mt-1">{error}</p>
                 <p className="text-red-600 text-xs mt-2">
-                  This could be due to CORS restrictions, website blocking, or network issues. 
-                  Try a different news website or check if the site allows scraping.
+                  This could be due to CORS restrictions, website blocking, or
+                  network issues. Try a different news website or check if the
+                  site allows scraping.
                 </p>
                 <button
                   onClick={dismissError}
@@ -62,9 +68,12 @@ function App() {
             <div className="flex items-center space-x-3">
               <CheckCircle className="h-5 w-5 text-green-600" />
               <div>
-                <h3 className="text-green-800 font-semibold">Scraping Successful!</h3>
+                <h3 className="text-green-800 font-semibold">
+                  Scraping Successful!
+                </h3>
                 <p className="text-green-700 text-sm">
-                  Found {articles.length} articles. Use the filters below to refine your search.
+                  Found {articles.length} articles. Use the filters below to
+                  refine your search.
                 </p>
               </div>
             </div>
@@ -72,10 +81,10 @@ function App() {
         )}
 
         <UrlInput onScrape={handleScrape} isLoading={isLoading} />
-        
+
         <EthicsSection />
 
-        {(articles.length > 0 || isLoading) && (
+        {(articles.length > 0 || isLoading || searchTerm.trim()) && (
           <>
             <FilterSort
               searchTerm={searchTerm}
@@ -84,8 +93,13 @@ function App() {
               onSortChange={setSortBy}
               totalArticles={articles.length}
             />
-            
-            <ArticleGrid articles={articles} isLoading={isLoading} />
+
+            <ArticleGrid
+              articles={filteredArticles}
+              isLoading={isLoading}
+              searchTerm={searchTerm}
+              hasArticles={articles.length > 0}
+            />
           </>
         )}
 
@@ -100,9 +114,9 @@ function App() {
                 Welcome to NewsHarvester
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Enter any news website URL above to extract and display article metadata. 
-                Our ethical scraping engine will analyze the page structure and present 
-                articles in a clean, organized format.
+                Enter any news website URL above to extract and display article
+                metadata. Our ethical scraping engine will analyze the page
+                structure and present articles in a clean, organized format.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-500">
                 <div className="flex items-center justify-center space-x-2">
@@ -122,7 +136,9 @@ function App() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
+
 export default App;
